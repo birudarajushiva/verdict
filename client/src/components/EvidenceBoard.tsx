@@ -131,7 +131,7 @@ export default function EvidenceBoard({
       hub.name = 'bg-sphere';
 
       const lattice = new THREE.Mesh(
-        new THREE.SphereGeometry(170, 18, 18),
+        new THREE.SphereGeometry(170, 14, 14),
         new THREE.MeshBasicMaterial({
           color: 0x3d7bfd,
           transparent: true,
@@ -143,7 +143,7 @@ export default function EvidenceBoard({
       hub.add(lattice);
 
       const innerShell = new THREE.Mesh(
-        new THREE.SphereGeometry(118, 12, 12),
+        new THREE.SphereGeometry(118, 9, 9),
         new THREE.MeshBasicMaterial({
           color: 0x1e40af,
           transparent: true,

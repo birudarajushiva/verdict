@@ -39,6 +39,11 @@ export default function App() {
   const activeRun = tab === 'for' ? forRunRef.current : againstRunRef.current;
   const totalTicks = activeRun?.ticks.length ?? 0;
 
+  // Each tab shows its own side's evidence chain, so For vs Against are clearly different.
+  const activeIds = new Set(activeRun?.path ?? []);
+  const visibleChunks = activeIds.size ? chunks.filter((c) => activeIds.has(c.id)) : chunks;
+  const visibleLinks = activeIds.size ? links.filter((l) => activeIds.has(l.from) && activeIds.has(l.to)) : links;
+
   const toast = (message: string) => {
     const id = Date.now();
     setToasts((prev) => [...prev, { id, message }]);
@@ -282,8 +287,8 @@ export default function App() {
       <main className="workspace">
         <section className="left-stage">
           <EvidenceBoard
-            chunks={chunks}
-            links={links}
+            chunks={visibleChunks}
+            links={visibleLinks}
             agents={agents}
             highlightedPath={path}
             focusedChunk={focusedChunk}
