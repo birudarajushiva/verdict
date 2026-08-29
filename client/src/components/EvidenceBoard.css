@@ -146,6 +146,7 @@
   left: 0;
   width: 150px;
   padding: 8px 10px;
+  transform-origin: left center;
   border-radius: 9px;
   border: 1px solid;
   background: rgba(8, 14, 28, 0.88);

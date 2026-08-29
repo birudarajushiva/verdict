@@ -56,6 +56,7 @@ interface OverlayItem {
   y: number;
   opacity: number;
   scale: number;
+  zoom: number;
   inFront: boolean;
 }
 
@@ -115,12 +116,12 @@ export default function EvidenceBoard({
     const fg = fgRef.current;
     if (!fg) return;
 
-    fg.d3Force('charge')?.strength(-360);
-    fg.d3Force('link')?.distance(100);
+    fg.d3Force('charge')?.strength(-400);
+    fg.d3Force('link')?.distance(110);
     const radial = fg.d3Force('radial');
     if (radial) {
-      radial.strength(0.5);
-      radial.radius(160);
+      radial.strength(0.7);
+      radial.radius(165);
     }
     fg.cameraPosition({ x: 130, y: 100, z: 320 }, { x: 0, y: 0, z: 0 });
 
@@ -378,12 +379,14 @@ export default function EvidenceBoard({
         const dimmed = highlightedPath.length > 0 && !onPath && !isFocused;
         const opacity = inFront ? (dimmed ? 0.4 : 1) : 0.08;
         const scale = isFocused ? 1.12 : onPath ? 1.06 : 1;
-        newOverlay.set(node.id, { x, y, opacity, scale, inFront });
+        const dist = camera.position.distanceTo(tmpMid.set(node.x, node.y, node.z));
+        const zoom = Math.min(1.8, Math.max(0.35, 360 / dist));
+        newOverlay.set(node.id, { x, y, opacity, scale, zoom, inFront });
       });
 
       let sig = '';
       newOverlay.forEach((o, id) => {
-        sig += id + (o.x | 0) + ',' + (o.y | 0) + ',' + (o.inFront ? 1 : 0) + ';';
+        sig += id + (o.x | 0) + ',' + (o.y | 0) + ',' + Math.round(o.zoom * 100) + ',' + (o.inFront ? 1 : 0) + ';';
       });
       if (sig !== lastSigRef.current) {
         lastSigRef.current = sig;
@@ -584,7 +587,7 @@ export default function EvidenceBoard({
               key={node.id}
               className={`node-card glass ${isFocused ? 'focused' : ''} ${onPath ? 'path' : ''} ${dimmed ? 'dimmed' : ''} ${!pos.inFront ? 'behind' : ''}`}
               style={{
-                transform: `translate(${pos.x}px, ${pos.y}px) translate(14px, -50%) scale(${pos.scale})`,
+                transform: `translate(${pos.x}px, ${pos.y}px) translate(${12 * pos.zoom}px, 0) scale(${pos.zoom * pos.scale})`,
                 opacity: pos.opacity,
                 borderColor: getDocColor(node.doc),
               }}
