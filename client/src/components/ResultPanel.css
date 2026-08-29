@@ -1,0 +1,173 @@
+.result-panel {
+  height: 100%;
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.result-header h3 {
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.angle-chips {
+  display: flex;
+  gap: 6px;
+}
+
+.angle-chip {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 9px;
+  border: 1px solid;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.chain-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.chain-item {
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.chain-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 215, 0, 0.5);
+}
+
+.chain-number {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.chain-body {
+  min-width: 0;
+}
+
+.chain-doc {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.chain-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.chain-text.expanded {
+  -webkit-line-clamp: unset;
+}
+
+.sources-section h4,
+.contradictions-section h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.source-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.source-tag {
+  font-size: 12px;
+  padding: 4px 11px;
+  border: 1px solid;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.contradictions-section {
+  border: 1px solid rgba(255, 42, 140, 0.35);
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(255, 42, 140, 0.05);
+}
+
+.contradiction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contradiction-item {
+  text-align: left;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 42, 140, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.contradiction-item:hover {
+  border-color: rgba(255, 42, 140, 0.6);
+}
+
+.contra-doc {
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.contra-text {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.empty-note {
+  font-size: 13px;
+  color: var(--text);
+  opacity: 0.8;
+  margin: 0;
+}

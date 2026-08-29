@@ -1,0 +1,2076 @@
+{
+  "chunks": [
+    {
+      "id": "c1",
+      "doc": "complaint.txt",
+      "text": "On March 15, 2023, the plaintiff filed a complaint alleging the vendor knew about the defect prior to shipment.",
+      "score": {
+        "timeline": 0.592183675577402,
+        "knowledge": 0.24023012811570563,
+        "incentives": 0.6518469665336781
+      },
+      "against": 0.0734703821238065
+    },
+    {
+      "id": "c2",
+      "doc": "complaint.txt",
+      "text": "The complaint states the product failed within 48 hours of installation at the client site.",
+      "score": {
+        "timeline": 0.24921103321022564,
+        "knowledge": 0.42019380100310455,
+        "incentives": 0.2690307853190671
+      },
+      "against": 0.16590396030240623
+    },
+    {
+      "id": "c3",
+      "doc": "complaint.txt",
+      "text": "Plaintiff seeks damages for breach of contract and negligent misrepresentation.",
+      "score": {
+        "timeline": 0.493320626233841,
+        "knowledge": 0.2715173433212414,
+        "incentives": 0.7905188986060383
+      },
+      "against": 0.7561786552672081
+    },
+    {
+      "id": "c4",
+      "doc": "complaint.txt",
+      "text": "Exhibit A attached to the complaint includes photographs of the damaged unit.",
+      "score": {
+        "timeline": 0.6158707792283056,
+        "knowledge": 0.7181926918931947,
+        "incentives": 0.550178478193348
+      },
+      "against": 0.15067475716221457
+    },
+    {
+      "id": "c5",
+      "doc": "vendor_email.txt",
+      "text": "Email from sales director to factory dated Feb 28, 2023: \"Please expedite the remaining 200 units, quality checks optional.\"",
+      "score": {
+        "timeline": 0.3743547654412165,
+        "knowledge": 0.5000952930160775,
+        "incentives": 0.3018275889878602
+      },
+      "against": 0.03639929669680294
+    },
+    {
+      "id": "c6",
+      "doc": "vendor_email.txt",
+      "text": "Reply from factory manager on March 1, 2023: \"We noticed an intermittent fault but can ship if you accept liability.\"",
+      "score": {
+        "timeline": 0.48372215870255736,
+        "knowledge": 0.3081330262503591,
+        "incentives": 0.26035079767182057
+      },
+      "against": 0.07194850046266094
+    },
+    {
+      "id": "c7",
+      "doc": "vendor_email.txt",
+      "text": "Sales director responded March 1, 2023: \"Ship anyway, we need to hit quarterly target.\"",
+      "score": {
+        "timeline": 0.7815036304840786,
+        "knowledge": 0.20708273234249702,
+        "incentives": 0.24848539373673978
+      },
+      "against": 0.1374862456501243
+    },
+    {
+      "id": "c8",
+      "doc": "vendor_email.txt",
+      "text": "Follow-up email March 5, 2023: \"Customer reporting failures, keep this thread internal only.\"",
+      "score": {
+        "timeline": 0.6035903927895194,
+        "knowledge": 0.2203938593600936,
+        "incentives": 0.7986084241169438
+      },
+      "against": 0.033772143073674994
+    },
+    {
+      "id": "c9",
+      "doc": "inspection_report.txt",
+      "text": "Independent inspector visited the site on March 20, 2023 and documented a failed capacitor.",
+      "score": {
+        "timeline": 0.41509336497357335,
+        "knowledge": 0.7730992818911646,
+        "incentives": 0.34002601494857343
+      },
+      "against": 0.21582928244878477
+    },
+    {
+      "id": "c10",
+      "doc": "inspection_report.txt",
+      "text": "The report concludes the defect was present at the time of manufacture, not caused by installation.",
+      "score": {
+        "timeline": 0.38226241938181393,
+        "knowledge": 0.48750044534120496,
+        "incentives": 0.3044385749565498
+      },
+      "against": 0.2181174141451799
+    },
+    {
+      "id": "c11",
+      "doc": "inspection_report.txt",
+      "text": "Thermal imaging shows abnormal heat signatures consistent with a pre-existing electrical fault.",
+      "score": {
+        "timeline": 0.6145319295703437,
+        "knowledge": 0.6414023909703914,
+        "incentives": 0.5821254266928059
+      },
+      "against": 0.16060227186909223
+    },
+    {
+      "id": "c12",
+      "doc": "inspection_report.txt",
+      "text": "Inspector notes: \"This condition could only develop over weeks, not two days.\"",
+      "score": {
+        "timeline": 0.6116438429555904,
+        "knowledge": 0.6905786015073823,
+        "incentives": 0.6816829467555628
+      },
+      "against": 0.11205141758897681
+    },
+    {
+      "id": "c13",
+      "doc": "witness_stmt.txt",
+      "text": "Site engineer testified the unit emitted a burning smell immediately after power-on.",
+      "score": {
+        "timeline": 0.43004148611076776,
+        "knowledge": 0.23430689809126756,
+        "incentives": 0.6561272153902649
+      },
+      "against": 0.06862466683215775
+    },
+    {
+      "id": "c14",
+      "doc": "witness_stmt.txt",
+      "text": "The engineer stated no other equipment on the same circuit experienced any problems.",
+      "score": {
+        "timeline": 0.4820829600991621,
+        "knowledge": 0.6499536506418577,
+        "incentives": 0.799604693927517
+      },
+      "against": 0.14359298116509422
+    },
+    {
+      "id": "c15",
+      "doc": "witness_stmt.txt",
+      "text": "Witness recalled a conversation on March 2, 2023 where the vendor promised \"thorough testing.\"",
+      "score": {
+        "timeline": 0.30472460456800565,
+        "knowledge": 0.2831836313071804,
+        "incentives": 0.6972302574551658
+      },
+      "against": 0.09465930769204627
+    },
+    {
+      "id": "c16",
+      "doc": "witness_stmt.txt",
+      "text": "Engineer also saw an internal email mentioning \"skip QC\" but could not recall the sender name.",
+      "score": {
+        "timeline": 0.5173793036586427,
+        "knowledge": 0.4498576216075186,
+        "incentives": 0.3780053840991585
+      },
+      "against": 0.02183364424164944
+    },
+    {
+      "id": "c17",
+      "doc": "internal_memo.txt",
+      "text": "Memo from CFO dated March 4, 2023: \"Missing Q1 revenue target will trigger covenant review.\"",
+      "score": {
+        "timeline": 0.6429636734359674,
+        "knowledge": 0.7032230715047891,
+        "incentives": 0.7687058160837559
+      },
+      "against": 0.29527578441163904
+    },
+    {
+      "id": "c18",
+      "doc": "internal_memo.txt",
+      "text": "The memo recommends shipping all pending orders before quarter end to improve cash flow.",
+      "score": {
+        "timeline": 0.671476009515221,
+        "knowledge": 0.41298609301653344,
+        "incentives": 0.2548877609749935
+      },
+      "against": 0.10269779683896724
+    },
+    {
+      "id": "c19",
+      "doc": "internal_memo.txt",
+      "text": "Risk officer annotated the memo: \"Accelerated shipping may increase warranty exposure.\"",
+      "score": {
+        "timeline": 0.3398881179536516,
+        "knowledge": 0.3799987646071119,
+        "incentives": 0.5787682418629843
+      },
+      "against": 0.01857093391574266
+    },
+    {
+      "id": "c20",
+      "doc": "internal_memo.txt",
+      "text": "Another note on March 6, 2023: \"Do not document the QC waiver in customer-facing materials.\"",
+      "score": {
+        "timeline": 0.5875948644630687,
+        "knowledge": 0.7010782359067418,
+        "incentives": 0.4628350259794875
+      },
+      "against": 0.0323124197565991
+    }
+  ],
+  "links": [
+    {
+      "from": "c1",
+      "to": "c13",
+      "strength": 0.05
+    },
+    {
+      "from": "c1",
+      "to": "c2",
+      "strength": 0.05
+    },
+    {
+      "from": "c1",
+      "to": "c5",
+      "strength": 0.05
+    },
+    {
+      "from": "c1",
+      "to": "c9",
+      "strength": 0.05
+    },
+    {
+      "from": "c10",
+      "to": "c11",
+      "strength": 0.05
+    },
+    {
+      "from": "c10",
+      "to": "c14",
+      "strength": 0.05
+    },
+    {
+      "from": "c10",
+      "to": "c2",
+      "strength": 0.05
+    },
+    {
+      "from": "c10",
+      "to": "c9",
+      "strength": 0.05
+    },
+    {
+      "from": "c11",
+      "to": "c4",
+      "strength": 0.05
+    },
+    {
+      "from": "c11",
+      "to": "c9",
+      "strength": 0.05
+    },
+    {
+      "from": "c12",
+      "to": "c15",
+      "strength": 0.05
+    },
+    {
+      "from": "c12",
+      "to": "c20",
+      "strength": 0.05
+    },
+    {
+      "from": "c12",
+      "to": "c6",
+      "strength": 0.05
+    },
+    {
+      "from": "c12",
+      "to": "c9",
+      "strength": 0.05
+    },
+    {
+      "from": "c13",
+      "to": "c14",
+      "strength": 0.05
+    },
+    {
+      "from": "c13",
+      "to": "c15",
+      "strength": 0.05
+    },
+    {
+      "from": "c13",
+      "to": "c16",
+      "strength": 0.05
+    },
+    {
+      "from": "c13",
+      "to": "c8",
+      "strength": 0.05
+    },
+    {
+      "from": "c14",
+      "to": "c2",
+      "strength": 0.05
+    },
+    {
+      "from": "c15",
+      "to": "c19",
+      "strength": 0.05
+    },
+    {
+      "from": "c16",
+      "to": "c7",
+      "strength": 0.05
+    },
+    {
+      "from": "c17",
+      "to": "c3",
+      "strength": 0.05
+    },
+    {
+      "from": "c17",
+      "to": "c5",
+      "strength": 0.05
+    },
+    {
+      "from": "c18",
+      "to": "c3",
+      "strength": 0.05
+    },
+    {
+      "from": "c18",
+      "to": "c8",
+      "strength": 0.05
+    },
+    {
+      "from": "c20",
+      "to": "c6",
+      "strength": 0.05
+    },
+    {
+      "from": "c5",
+      "to": "c6",
+      "strength": 0.05
+    },
+    {
+      "from": "c5",
+      "to": "c7",
+      "strength": 0.05
+    },
+    {
+      "from": "c6",
+      "to": "c8",
+      "strength": 0.05
+    },
+    {
+      "from": "c7",
+      "to": "c8",
+      "strength": 0.05
+    }
+  ],
+  "angles": [
+    "timeline",
+    "knowledge",
+    "incentives"
+  ],
+  "ticks": [
+    {
+      "tick": 1,
+      "links": [
+        {
+          "from": "c1",
+          "to": "c13",
+          "strength": 0.20981243992451754
+        },
+        {
+          "from": "c1",
+          "to": "c2",
+          "strength": 0.0425
+        },
+        {
+          "from": "c1",
+          "to": "c5",
+          "strength": 0.0425
+        },
+        {
+          "from": "c1",
+          "to": "c9",
+          "strength": 0.43678063376449394
+        },
+        {
+          "from": "c10",
+          "to": "c11",
+          "strength": 0.0425
+        },
+        {
+          "from": "c10",
+          "to": "c14",
+          "strength": 0.0425
+        },
+        {
+          "from": "c10",
+          "to": "c2",
+          "strength": 0.0425
+        },
+        {
+          "from": "c10",
+          "to": "c9",
+          "strength": 0.0425
+        },
+        {
+          "from": "c11",
+          "to": "c4",
+          "strength": 0.0425
+        },
+        {
+          "from": "c11",
+          "to": "c9",
+          "strength": 0.0425
+        },
+        {
+          "from": "c12",
+          "to": "c15",
+          "strength": 0.0425
+        },
+        {
+          "from": "c12",
+          "to": "c20",
+          "strength": 0.0425
+        },
+        {
+          "from": "c12",
+          "to": "c6",
+          "strength": 0.0425
+        },
+        {
+          "from": "c12",
+          "to": "c9",
+          "strength": 0.0425
+        },
+        {
+          "from": "c13",
+          "to": "c14",
+          "strength": 0.0425
+        },
+        {
+          "from": "c13",
+          "to": "c15",
+          "strength": 0.0425
+        },
+        {
+          "from": "c13",
+          "to": "c16",
+          "strength": 0.0425
+        },
+        {
+          "from": "c13",
+          "to": "c8",
+          "strength": 0.0425
+        },
+        {
+          "from": "c14",
+          "to": "c2",
+          "strength": 0.0425
+        },
+        {
+          "from": "c15",
+          "to": "c19",
+          "strength": 0.0425
+        },
+        {
+          "from": "c16",
+          "to": "c7",
+          "strength": 0.0425
+        },
+        {
+          "from": "c17",
+          "to": "c3",
+          "strength": 0.0425
+        },
+        {
+          "from": "c17",
+          "to": "c5",
+          "strength": 0.0425
+        },
+        {
+          "from": "c18",
+          "to": "c3",
+          "strength": 0.0425
+        },
+        {
+          "from": "c18",
+          "to": "c8",
+          "strength": 0.0425
+        },
+        {
+          "from": "c20",
+          "to": "c6",
+          "strength": 0.0425
+        },
+        {
+          "from": "c5",
+          "to": "c6",
+          "strength": 0.0425
+        },
+        {
+          "from": "c5",
+          "to": "c7",
+          "strength": 0.0425
+        },
+        {
+          "from": "c6",
+          "to": "c8",
+          "strength": 0.0425
+        },
+        {
+          "from": "c7",
+          "to": "c8",
+          "strength": 0.0425
+        }
+      ],
+      "agents": [
+        {
+          "id": "a0",
+          "angle": "timeline",
+          "at": "c9",
+          "visited": [
+            "c1",
+            "c9"
+          ]
+        },
+        {
+          "id": "a1",
+          "angle": "knowledge",
+          "at": "c9",
+          "visited": [
+            "c1",
+            "c9"
+          ]
+        },
+        {
+          "id": "a2",
+          "angle": "incentives",
+          "at": "c13",
+          "visited": [
+            "c1",
+            "c13"
+          ]
+        },
+        {
+          "id": "a3",
+          "angle": "timeline",
+          "at": "c9",
+          "visited": [
+            "c1",
+            "c9"
+          ]
+        },
+        {
+          "id": "a4",
+          "angle": "knowledge",
+          "at": "c9",
+          "visited": [
+            "c1",
+            "c9"
+          ]
+        }
+      ]
+    },
+    {
+      "tick": 2,
+      "links": [
+        {
+          "from": "c1",
+          "to": "c13",
+          "strength": 0.1783405739358399
+        },
+        {
+          "from": "c1",
+          "to": "c2",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c1",
+          "to": "c5",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c1",
+          "to": "c9",
+          "strength": 0.3712635386998198
+        },
+        {
+          "from": "c10",
+          "to": "c11",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c10",
+          "to": "c14",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c10",
+          "to": "c2",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c10",
+          "to": "c9",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c11",
+          "to": "c4",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c11",
+          "to": "c9",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c12",
+          "to": "c15",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c12",
+          "to": "c20",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c12",
+          "to": "c6",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c12",
+          "to": "c9",
+          "strength": 0.700258446676116
+        },
+        {
+          "from": "c13",
+          "to": "c14",
+          "strength": 0.2400241969515168
+        },
+        {
+          "from": "c13",
+          "to": "c15",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c13",
+          "to": "c16",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c13",
+          "to": "c8",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c14",
+          "to": "c2",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c15",
+          "to": "c19",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c16",
+          "to": "c7",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c17",
+          "to": "c3",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c17",
+          "to": "c5",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c18",
+          "to": "c3",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c18",
+          "to": "c8",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c20",
+          "to": "c6",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c5",
+          "to": "c6",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c5",
+          "to": "c7",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c6",
+          "to": "c8",
+          "strength": 0.036125000000000004
+        },
+        {
+          "from": "c7",
+          "to": "c8",
+          "strength": 0.036125000000000004
+        }
+      ],
+      "agents": [
+        {
+          "id": "a0",
+          "angle": "timeline",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12"
+          ]
+        },
+        {
+          "id": "a1",
+          "angle": "knowledge",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12"
+          ]
+        },
+        {
+          "id": "a2",
+          "angle": "incentives",
+          "at": "c14",
+          "visited": [
+            "c1",
+            "c13",
+            "c14"
+          ]
+        },
+        {
+          "id": "a3",
+          "angle": "timeline",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12"
+          ]
+        },
+        {
+          "id": "a4",
+          "angle": "knowledge",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12"
+          ]
+        }
+      ]
+    },
+    {
+      "tick": 3,
+      "links": [
+        {
+          "from": "c1",
+          "to": "c13",
+          "strength": 0.15158948784546392
+        },
+        {
+          "from": "c1",
+          "to": "c2",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c1",
+          "to": "c5",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c1",
+          "to": "c9",
+          "strength": 0.31557400789484685
+        },
+        {
+          "from": "c10",
+          "to": "c11",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c10",
+          "to": "c14",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c10",
+          "to": "c2",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c10",
+          "to": "c9",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c11",
+          "to": "c4",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c11",
+          "to": "c9",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c12",
+          "to": "c15",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c12",
+          "to": "c20",
+          "strength": 0.5091545810323842
+        },
+        {
+          "from": "c12",
+          "to": "c6",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c12",
+          "to": "c9",
+          "strength": 0.5952196796746986
+        },
+        {
+          "from": "c13",
+          "to": "c14",
+          "strength": 0.20402056740878927
+        },
+        {
+          "from": "c13",
+          "to": "c15",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c13",
+          "to": "c16",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c13",
+          "to": "c8",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c14",
+          "to": "c2",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c15",
+          "to": "c19",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c16",
+          "to": "c7",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c17",
+          "to": "c3",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c17",
+          "to": "c5",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c18",
+          "to": "c3",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c18",
+          "to": "c8",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c20",
+          "to": "c6",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c5",
+          "to": "c6",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c5",
+          "to": "c7",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c6",
+          "to": "c8",
+          "strength": 0.030706250000000004
+        },
+        {
+          "from": "c7",
+          "to": "c8",
+          "strength": 0.030706250000000004
+        }
+      ],
+      "agents": [
+        {
+          "id": "a0",
+          "angle": "timeline",
+          "at": "c20",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a1",
+          "angle": "knowledge",
+          "at": "c9",
+          "visited": [
+            "c1",
+            "c9",
+            "c12"
+          ]
+        },
+        {
+          "id": "a2",
+          "angle": "incentives",
+          "at": "c13",
+          "visited": [
+            "c1",
+            "c13",
+            "c14"
+          ]
+        },
+        {
+          "id": "a3",
+          "angle": "timeline",
+          "at": "c20",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a4",
+          "angle": "knowledge",
+          "at": "c20",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        }
+      ]
+    },
+    {
+      "tick": 4,
+      "links": [
+        {
+          "from": "c1",
+          "to": "c13",
+          "strength": 0.12885106466864432
+        },
+        {
+          "from": "c1",
+          "to": "c2",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c1",
+          "to": "c5",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c1",
+          "to": "c9",
+          "strength": 0.2682379067106198
+        },
+        {
+          "from": "c10",
+          "to": "c11",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c10",
+          "to": "c14",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c10",
+          "to": "c2",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c10",
+          "to": "c9",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c11",
+          "to": "c4",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c11",
+          "to": "c9",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c12",
+          "to": "c15",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c12",
+          "to": "c20",
+          "strength": 0.43278139387752657
+        },
+        {
+          "from": "c12",
+          "to": "c6",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c12",
+          "to": "c9",
+          "strength": 0.6820342711078763
+        },
+        {
+          "from": "c13",
+          "to": "c14",
+          "strength": 0.3773166792489877
+        },
+        {
+          "from": "c13",
+          "to": "c15",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c13",
+          "to": "c16",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c13",
+          "to": "c8",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c14",
+          "to": "c2",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c15",
+          "to": "c19",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c16",
+          "to": "c7",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c17",
+          "to": "c3",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c17",
+          "to": "c5",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c18",
+          "to": "c3",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c18",
+          "to": "c8",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c20",
+          "to": "c6",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c5",
+          "to": "c6",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c5",
+          "to": "c7",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c6",
+          "to": "c8",
+          "strength": 0.026100312500000004
+        },
+        {
+          "from": "c7",
+          "to": "c8",
+          "strength": 0.026100312500000004
+        }
+      ],
+      "agents": [
+        {
+          "id": "a0",
+          "angle": "timeline",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a1",
+          "angle": "knowledge",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12"
+          ]
+        },
+        {
+          "id": "a2",
+          "angle": "incentives",
+          "at": "c14",
+          "visited": [
+            "c1",
+            "c13",
+            "c14"
+          ]
+        },
+        {
+          "id": "a3",
+          "angle": "timeline",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a4",
+          "angle": "knowledge",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        }
+      ]
+    },
+    {
+      "tick": 5,
+      "links": [
+        {
+          "from": "c1",
+          "to": "c13",
+          "strength": 0.10952340496834767
+        },
+        {
+          "from": "c1",
+          "to": "c2",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c1",
+          "to": "c5",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c1",
+          "to": "c9",
+          "strength": 0.22800222070402684
+        },
+        {
+          "from": "c10",
+          "to": "c11",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c10",
+          "to": "c14",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c10",
+          "to": "c2",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c10",
+          "to": "c9",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c11",
+          "to": "c4",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c11",
+          "to": "c9",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c12",
+          "to": "c15",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c12",
+          "to": "c20",
+          "strength": 0.8463125158282817
+        },
+        {
+          "from": "c12",
+          "to": "c6",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c12",
+          "to": "c9",
+          "strength": 0.7768694473239418
+        },
+        {
+          "from": "c13",
+          "to": "c14",
+          "strength": 0.3207191773616395
+        },
+        {
+          "from": "c13",
+          "to": "c15",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c13",
+          "to": "c16",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c13",
+          "to": "c8",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c14",
+          "to": "c2",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c15",
+          "to": "c19",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c16",
+          "to": "c7",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c17",
+          "to": "c3",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c17",
+          "to": "c5",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c18",
+          "to": "c3",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c18",
+          "to": "c8",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c20",
+          "to": "c6",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c5",
+          "to": "c6",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c5",
+          "to": "c7",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c6",
+          "to": "c8",
+          "strength": 0.022185265625000002
+        },
+        {
+          "from": "c7",
+          "to": "c8",
+          "strength": 0.022185265625000002
+        }
+      ],
+      "agents": [
+        {
+          "id": "a0",
+          "angle": "timeline",
+          "at": "c20",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a1",
+          "angle": "knowledge",
+          "at": "c20",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a2",
+          "angle": "incentives",
+          "at": "c13",
+          "visited": [
+            "c1",
+            "c13",
+            "c14"
+          ]
+        },
+        {
+          "id": "a3",
+          "angle": "timeline",
+          "at": "c20",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a4",
+          "angle": "knowledge",
+          "at": "c9",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        }
+      ]
+    },
+    {
+      "tick": 6,
+      "links": [
+        {
+          "from": "c1",
+          "to": "c13",
+          "strength": 0.09309489422309551
+        },
+        {
+          "from": "c1",
+          "to": "c2",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c1",
+          "to": "c5",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c1",
+          "to": "c9",
+          "strength": 0.19380188759842282
+        },
+        {
+          "from": "c10",
+          "to": "c11",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c10",
+          "to": "c14",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c10",
+          "to": "c2",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c10",
+          "to": "c9",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c11",
+          "to": "c4",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c11",
+          "to": "c9",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c12",
+          "to": "c15",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c12",
+          "to": "c20",
+          "strength": 0.7193656384540394
+        },
+        {
+          "from": "c12",
+          "to": "c6",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c12",
+          "to": "c9",
+          "strength": 0.6603390302253506
+        },
+        {
+          "from": "c13",
+          "to": "c14",
+          "strength": 0.47651049770891035
+        },
+        {
+          "from": "c13",
+          "to": "c15",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c13",
+          "to": "c16",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c13",
+          "to": "c8",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c14",
+          "to": "c2",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c15",
+          "to": "c19",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c16",
+          "to": "c7",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c17",
+          "to": "c3",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c17",
+          "to": "c5",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c18",
+          "to": "c3",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c18",
+          "to": "c8",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c20",
+          "to": "c6",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c5",
+          "to": "c6",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c5",
+          "to": "c7",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c6",
+          "to": "c8",
+          "strength": 0.01885747578125
+        },
+        {
+          "from": "c7",
+          "to": "c8",
+          "strength": 0.01885747578125
+        }
+      ],
+      "agents": [
+        {
+          "id": "a0",
+          "angle": "timeline",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a1",
+          "angle": "knowledge",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a2",
+          "angle": "incentives",
+          "at": "c14",
+          "visited": [
+            "c1",
+            "c13",
+            "c14"
+          ]
+        },
+        {
+          "id": "a3",
+          "angle": "timeline",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a4",
+          "angle": "knowledge",
+          "at": "c11",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20",
+            "c11"
+          ]
+        }
+      ]
+    },
+    {
+      "tick": 7,
+      "links": [
+        {
+          "from": "c1",
+          "to": "c13",
+          "strength": 0.07913066008963118
+        },
+        {
+          "from": "c1",
+          "to": "c2",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c1",
+          "to": "c5",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c1",
+          "to": "c9",
+          "strength": 0.1647316044586594
+        },
+        {
+          "from": "c10",
+          "to": "c11",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c10",
+          "to": "c14",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c10",
+          "to": "c2",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c10",
+          "to": "c9",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c11",
+          "to": "c4",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c11",
+          "to": "c9",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c12",
+          "to": "c15",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c12",
+          "to": "c20",
+          "strength": 0.9111341735620986
+        },
+        {
+          "from": "c12",
+          "to": "c6",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c12",
+          "to": "c9",
+          "strength": 0.758428492573795
+        },
+        {
+          "from": "c13",
+          "to": "c14",
+          "strength": 0.4050339230525738
+        },
+        {
+          "from": "c13",
+          "to": "c15",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c13",
+          "to": "c16",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c13",
+          "to": "c8",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c14",
+          "to": "c2",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c15",
+          "to": "c19",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c16",
+          "to": "c7",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c17",
+          "to": "c3",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c17",
+          "to": "c5",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c18",
+          "to": "c3",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c18",
+          "to": "c8",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c20",
+          "to": "c6",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c5",
+          "to": "c6",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c5",
+          "to": "c7",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c6",
+          "to": "c8",
+          "strength": 0.0160288544140625
+        },
+        {
+          "from": "c7",
+          "to": "c8",
+          "strength": 0.0160288544140625
+        }
+      ],
+      "agents": [
+        {
+          "id": "a0",
+          "angle": "timeline",
+          "at": "c20",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a1",
+          "angle": "knowledge",
+          "at": "c9",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a2",
+          "angle": "incentives",
+          "at": "c13",
+          "visited": [
+            "c1",
+            "c13",
+            "c14"
+          ]
+        },
+        {
+          "id": "a3",
+          "angle": "timeline",
+          "at": "c20",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a4",
+          "angle": "knowledge",
+          "at": "c9",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20",
+            "c11"
+          ]
+        }
+      ]
+    },
+    {
+      "tick": 8,
+      "links": [
+        {
+          "from": "c1",
+          "to": "c13",
+          "strength": 0.0672610610761865
+        },
+        {
+          "from": "c1",
+          "to": "c2",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c1",
+          "to": "c5",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c1",
+          "to": "c9",
+          "strength": 0.14002186378986048
+        },
+        {
+          "from": "c10",
+          "to": "c11",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c10",
+          "to": "c14",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c10",
+          "to": "c2",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c10",
+          "to": "c9",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c11",
+          "to": "c4",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c11",
+          "to": "c9",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c12",
+          "to": "c15",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c12",
+          "to": "c20",
+          "strength": 0.9505615909121663
+        },
+        {
+          "from": "c12",
+          "to": "c6",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c12",
+          "to": "c9",
+          "strength": 0.6446642186877257
+        },
+        {
+          "from": "c13",
+          "to": "c14",
+          "strength": 0.3442788345946877
+        },
+        {
+          "from": "c13",
+          "to": "c15",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c13",
+          "to": "c16",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c13",
+          "to": "c8",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c14",
+          "to": "c2",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c15",
+          "to": "c19",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c16",
+          "to": "c7",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c17",
+          "to": "c3",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c17",
+          "to": "c5",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c18",
+          "to": "c3",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c18",
+          "to": "c8",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c20",
+          "to": "c6",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c5",
+          "to": "c6",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c5",
+          "to": "c7",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c6",
+          "to": "c8",
+          "strength": 0.013624526251953126
+        },
+        {
+          "from": "c7",
+          "to": "c8",
+          "strength": 0.013624526251953126
+        }
+      ],
+      "agents": [
+        {
+          "id": "a0",
+          "angle": "timeline",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a1",
+          "angle": "knowledge",
+          "at": "c11",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20",
+            "c11"
+          ]
+        },
+        {
+          "id": "a2",
+          "angle": "incentives",
+          "at": "c8",
+          "visited": [
+            "c1",
+            "c13",
+            "c14",
+            "c8"
+          ]
+        },
+        {
+          "id": "a3",
+          "angle": "timeline",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20"
+          ]
+        },
+        {
+          "id": "a4",
+          "angle": "knowledge",
+          "at": "c12",
+          "visited": [
+            "c1",
+            "c9",
+            "c12",
+            "c20",
+            "c11"
+          ]
+        }
+      ]
+    }
+  ],
+  "path": [
+    "c1",
+    "c7",
+    "c12",
+    "c15",
+    "c19"
+  ],
+  "sources": [
+    "complaint.txt",
+    "vendor_email.txt",
+    "inspection_report.txt",
+    "witness_stmt.txt",
+    "internal_memo.txt"
+  ],
+  "contradictions": []
+}

@@ -1,111 +1,111 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --bg: #04070f;
+  --bg-elevated: #081020;
+  --bg-panel: rgba(8, 14, 28, 0.78);
+  --border: rgba(96, 128, 190, 0.2);
+  --border-glow: rgba(61, 123, 253, 0.3);
+  --text: #c2cddd;
+  --text-h: #f3f7fe;
+  --accent-blue: #3d7bfd;
+  --accent-deep: #1e40af;
+  --accent-darker: #0a1428;
+  --accent-purple: #a855f7;
+  --accent-pink: #ff2a8c;
+  --accent-gold: #ffd700;
+  --accent-green: #39ff14;
+  --glow-soft: rgba(61, 123, 253, 0.16);
+  --glow-faint: rgba(61, 123, 253, 0.08);
+  --radius: 14px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
+  font-family: 'Nixie One', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
   color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
+  background: var(--bg);
+  color-scheme: dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+* {
   box-sizing: border-box;
 }
 
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
 body {
-  margin: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(30, 64, 175, 0.14) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(10, 20, 40, 0.5) 0%, transparent 40%),
+    linear-gradient(160deg, #0a1428 0%, #04070f 60%, #02040a 100%);
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
+h1, h2, h3, h4 {
   color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
+  font-weight: 400;
   margin: 0;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 14px rgba(61, 123, 253, 0.28);
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+textarea, input {
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 150, 210, 0.18);
   border-radius: 4px;
-  color: var(--text-h);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 150, 210, 0.3);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.glass {
+  background: var(--bg-panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+}
+
+.neon-border {
+  box-shadow:
+    0 0 0 1px var(--glow-faint),
+    0 0 18px var(--glow-faint);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px var(--glow-soft); }
+  50% { box-shadow: 0 0 16px var(--glow-soft); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
