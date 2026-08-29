@@ -55,9 +55,12 @@ export default function ChatPanel({ path, onAsk }: ChatPanelProps) {
         ))}
         {loading && (
           <div className="chat-bubble assistant typing">
-            <span className="dot" />
-            <span className="dot" />
-            <span className="dot" />
+            <span className="typing-label">Analyzing your case — this can take a few minutes…</span>
+            <span className="dots">
+              <span className="dot" />
+              <span className="dot" />
+              <span className="dot" />
+            </span>
           </div>
         )}
         <div ref={endRef} />

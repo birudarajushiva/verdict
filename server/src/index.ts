@@ -76,7 +76,7 @@ async function handleAsk(body: any): Promise<{ answer: string }> {
   const seed = stringField(body, 'seed').trim() || 'demo';
 
   // Deterministic replay from cache: provides the brief, task outputs, and boost reasons.
-  const run = await runVerdictLoop(argument, seed);
+  const run = await runVerdictLoop(argument, seed, { maxTasks: 8 });
 
   const chunks = loadChunks(CASE_DIR);
   const byId = new Map(chunks.map((c) => [c.id, c]));

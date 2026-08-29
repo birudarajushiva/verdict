@@ -22,7 +22,7 @@ export async function runSwarm(argument: string, seed = 'demo', timeoutMs = 2400
     const res = await fetch(`${API_URL}/run`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ argument, seed }),
+      body: JSON.stringify({ argument, seed, maxTasks: 8 }),
       signal: ctrl.signal,
     });
     if (!res.ok) throw new Error(`run failed: ${res.status}`);
