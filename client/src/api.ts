@@ -15,7 +15,7 @@ export async function fetchGraph(): Promise<{ chunks: Chunk[]; links: Link[] }> 
   return { chunks: adaptChunks(data.chunks), links: adaptLinks(data.links) };
 }
 
-export async function runSwarm(argument: string, seed = 'demo', timeoutMs = 20000): Promise<RawRunResult> {
+export async function runSwarm(argument: string, seed = 'demo', timeoutMs = 240000): Promise<RawRunResult> {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
