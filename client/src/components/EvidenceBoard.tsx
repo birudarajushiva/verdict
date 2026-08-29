@@ -115,12 +115,12 @@ export default function EvidenceBoard({
     const fg = fgRef.current;
     if (!fg) return;
 
-    fg.d3Force('charge')?.strength(-220);
-    fg.d3Force('link')?.distance(75);
+    fg.d3Force('charge')?.strength(-360);
+    fg.d3Force('link')?.distance(100);
     const radial = fg.d3Force('radial');
     if (radial) {
-      radial.strength(0.62);
-      radial.radius(150);
+      radial.strength(0.5);
+      radial.radius(160);
     }
     fg.cameraPosition({ x: 130, y: 100, z: 320 }, { x: 0, y: 0, z: 0 });
 
@@ -130,7 +130,7 @@ export default function EvidenceBoard({
       hub.name = 'bg-sphere';
 
       const lattice = new THREE.Mesh(
-        new THREE.SphereGeometry(170, 28, 28),
+        new THREE.SphereGeometry(170, 18, 18),
         new THREE.MeshBasicMaterial({
           color: 0x3d7bfd,
           transparent: true,
@@ -142,7 +142,7 @@ export default function EvidenceBoard({
       hub.add(lattice);
 
       const innerShell = new THREE.Mesh(
-        new THREE.SphereGeometry(118, 18, 18),
+        new THREE.SphereGeometry(118, 12, 12),
         new THREE.MeshBasicMaterial({
           color: 0x1e40af,
           transparent: true,
@@ -584,7 +584,7 @@ export default function EvidenceBoard({
               key={node.id}
               className={`node-card glass ${isFocused ? 'focused' : ''} ${onPath ? 'path' : ''} ${dimmed ? 'dimmed' : ''} ${!pos.inFront ? 'behind' : ''}`}
               style={{
-                transform: `translate(-50%, -50%) translate(${pos.x}px, ${pos.y}px) scale(${pos.scale})`,
+                transform: `translate(${pos.x}px, ${pos.y}px) translate(14px, -50%) scale(${pos.scale})`,
                 opacity: pos.opacity,
                 borderColor: getDocColor(node.doc),
               }}
