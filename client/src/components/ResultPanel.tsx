@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Chunk } from '@shared/types.ts';
+import type { Chunk } from '../types.ts';
 import './ResultPanel.css';
 
 interface ResultPanelProps {

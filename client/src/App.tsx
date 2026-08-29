@@ -5,13 +5,15 @@ import EvidenceBoard, { type SideTab } from './components/EvidenceBoard.tsx';
 import ResultPanel from './components/ResultPanel.tsx';
 import ChatPanel from './components/ChatPanel.tsx';
 import { fetchGraph, runSwarm, ask } from './api.ts';
-import type { Chunk, Link, Agent, RunResult } from '@shared/types.ts';
+import { adaptRunSide } from './adapt.ts';
+import type { Chunk, Link, Agent, RunResult } from './types.ts';
 import mockRun from './mock/run.json';
 import './App.css';
 
 const USE_API = import.meta.env.VITE_USE_API === 'true';
-const AGAINST_THRESHOLD = 0.12;
 const DEMO_ARGUMENT = 'The vendor knowingly shipped a defective product to meet its quarterly revenue target, while hiding internal quality-control waivers from the customer.';
+
+type MockRun = RunResult & { chunks: Chunk[]; links: Link[] };
 
 interface Toast {
   id: number;
@@ -23,10 +25,7 @@ export default function App() {
   const [chunks, setChunks] = useState<Chunk[]>([]);
   const [links, setLinks] = useState<Link[]>([]);
   const [agents, setAgents] = useState<Agent[]>([]);
-  const [angles, setAngles] = useState<string[]>([]);
   const [path, setPath] = useState<string[]>([]);
-  const [sources, setSources] = useState<string[]>([]);
-  const [contradictions, setContradictions] = useState<string[]>([]);
   const [tickIndex, setTickIndex] = useState(-1);
   const [playing, setPlaying] = useState(false);
   const [showResult, setShowResult] = useState(false);
@@ -34,7 +33,11 @@ export default function App() {
   const [tab, setTab] = useState<SideTab>('for');
   const [activationKey, setActivationKey] = useState(0);
   const [toasts, setToasts] = useState<Toast[]>([]);
-  const runResultRef = useRef<RunResult | null>(null);
+  const forRunRef = useRef<RunResult | null>(null);
+  const againstRunRef = useRef<RunResult | null>(null);
+
+  const activeRun = tab === 'for' ? forRunRef.current : againstRunRef.current;
+  const totalTicks = activeRun?.ticks.length ?? 0;
 
   const toast = (message: string) => {
     const id = Date.now();
@@ -43,34 +46,29 @@ export default function App() {
   };
 
   useEffect(() => {
-    const data = mockRun as unknown as RunResult & { chunks: Chunk[]; links: Link[] };
-    setChunks(data.chunks);
-    setLinks(data.links);
-    setAngles(data.angles);
-    runResultRef.current = data;
+    const data = mockRun as unknown as MockRun;
+    forRunRef.current = data;
+    againstRunRef.current = data;
+    if (USE_API) {
+      fetchGraph()
+        .then((g) => {
+          setChunks(g.chunks);
+          setLinks(g.links);
+        })
+        .catch(() => {
+          setChunks(data.chunks);
+          setLinks(data.links);
+        });
+    } else {
+      setChunks(data.chunks);
+      setLinks(data.links);
+    }
   }, []);
 
-  const { forData, againstData } = useMemo(() => {
-    const forChunks = chunks.filter((c) => c.against < AGAINST_THRESHOLD);
-    const againstChunks = chunks.filter((c) => c.against >= AGAINST_THRESHOLD);
-    const forIds = new Set(forChunks.map((c) => c.id));
-    const againstIds = new Set(againstChunks.map((c) => c.id));
-    const forLinks = links.filter((l) => forIds.has(l.from) && forIds.has(l.to));
-    const againstLinks = links.filter((l) => againstIds.has(l.from) && againstIds.has(l.to));
-    return {
-      forData: { chunks: forChunks, links: forLinks },
-      againstData: { chunks: againstChunks, links: againstLinks },
-    };
-  }, [chunks, links]);
-
-  const activeData = tab === 'for' ? forData : againstData;
-
-  const totalTicks = runResultRef.current?.ticks.length ?? 0;
-
   const applyTick = (i: number) => {
-    const r = runResultRef.current;
-    if (!r) return;
-    const tick = r.ticks[i];
+    const run = tab === 'for' ? forRunRef.current : againstRunRef.current;
+    if (!run) return;
+    const tick = run.ticks[i];
     if (!tick) return;
     setTickIndex(i);
     setLinks(tick.links);
@@ -78,16 +76,25 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (!playing || !runResultRef.current) return;
-    if (tickIndex >= runResultRef.current.ticks.length - 1) {
+    if (!playing) return;
+    const run = tab === 'for' ? forRunRef.current : againstRunRef.current;
+    if (!run) return;
+    if (tickIndex >= run.ticks.length - 1) {
       setPlaying(false);
       setShowResult(true);
-      setPath(runResultRef.current.path);
+      setPath(run.path);
       return;
     }
     const timer = setTimeout(() => applyTick(tickIndex + 1), 800);
     return () => clearTimeout(timer);
-  }, [playing, tickIndex]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playing, tickIndex, tab]);
+
+  // Refresh the current tick's links/agents when switching sides.
+  useEffect(() => {
+    if (tickIndex >= 0) applyTick(tickIndex);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tab]);
 
   const startRun = async () => {
     setPlaying(false);
@@ -98,28 +105,37 @@ export default function App() {
     if (USE_API) {
       try {
         const graph = await fetchGraph();
-        setChunks(graph.chunks);
-        setLinks(graph.links);
-        const result = await runSwarm(argument);
-        runResultRef.current = result;
-        setAngles(result.angles);
-        setSources(result.sources);
-        setContradictions(result.contradictions);
+        let useChunks = graph.chunks;
+        let forRun: RunResult;
+        let againstRun: RunResult;
+        try {
+          const raw = await runSwarm(argument);
+          forRun = adaptRunSide(raw, 'support');
+          againstRun = adaptRunSide(raw, 'refute');
+        } catch {
+          const m = mockRun as unknown as MockRun;
+          useChunks = m.chunks;
+          forRun = m;
+          againstRun = m;
+          toast('Live LLM unavailable — showing demo swarm');
+        }
+        forRunRef.current = forRun;
+        againstRunRef.current = againstRun;
+        setChunks(useChunks);
+        const run = tab === 'for' ? forRun : againstRun;
         setTickIndex(0);
-        setLinks(result.ticks[0]?.links ?? graph.links);
-        setAgents(result.ticks[0]?.agents ?? []);
+        setLinks(run?.ticks[0]?.links ?? []);
+        setAgents(run?.ticks[0]?.agents ?? []);
         setPlaying(true);
         setActivationKey((k) => k + 1);
       } catch (err) {
         toast(err instanceof Error ? err.message : 'Run failed');
       }
     } else {
-      const data = mockRun as unknown as RunResult & { chunks: Chunk[]; links: Link[] };
+      const data = mockRun as unknown as MockRun;
       setChunks(data.chunks);
-      setAngles(data.angles);
-      setSources(data.sources);
-      setContradictions(data.contradictions);
-      runResultRef.current = data;
+      forRunRef.current = data;
+      againstRunRef.current = data;
       setTickIndex(0);
       setLinks(data.ticks[0]?.links ?? data.links);
       setAgents(data.ticks[0]?.agents ?? []);
@@ -129,12 +145,13 @@ export default function App() {
   };
 
   const togglePlay = () => {
-    if (!runResultRef.current) return;
+    const run = tab === 'for' ? forRunRef.current : againstRunRef.current;
+    if (!run) return;
     if (playing) {
       setPlaying(false);
       return;
     }
-    if (tickIndex >= runResultRef.current.ticks.length - 1) {
+    if (tickIndex >= run.ticks.length - 1) {
       applyTick(0);
       setShowResult(false);
       setPath([]);
@@ -143,18 +160,20 @@ export default function App() {
   };
 
   const stepForward = () => {
-    if (!runResultRef.current) return;
+    const run = tab === 'for' ? forRunRef.current : againstRunRef.current;
+    if (!run) return;
     setPlaying(false);
-    if (tickIndex < runResultRef.current.ticks.length - 1) {
+    if (tickIndex < run.ticks.length - 1) {
       applyTick(tickIndex + 1);
     } else {
       setShowResult(true);
-      setPath(runResultRef.current.path);
+      setPath(run.path);
     }
   };
 
   const stepBack = () => {
-    if (!runResultRef.current) return;
+    const run = tab === 'for' ? forRunRef.current : againstRunRef.current;
+    if (!run) return;
     setPlaying(false);
     setShowResult(false);
     setPath([]);
@@ -162,7 +181,8 @@ export default function App() {
   };
 
   const restart = () => {
-    if (!runResultRef.current) return;
+    const run = tab === 'for' ? forRunRef.current : againstRunRef.current;
+    if (!run) return;
     setShowResult(false);
     setPath([]);
     applyTick(0);
@@ -171,18 +191,23 @@ export default function App() {
   };
 
   const recap = useMemo(() => {
-    const r = runResultRef.current;
-    if (!r || tickIndex < 0) return null;
-    const upto = r.ticks.slice(0, tickIndex + 1);
+    const run = tab === 'for' ? forRunRef.current : againstRunRef.current;
+    if (!run || tickIndex < 0) return null;
+    const upto = run.ticks.slice(0, tickIndex + 1);
     const visited = new Set<string>();
     upto.forEach((t) => t.agents.forEach((a) => a.visited.forEach((v) => visited.add(v))));
-    const current = r.ticks[tickIndex];
+    const current = run.ticks[tickIndex];
     const strong = current ? current.links.filter((l) => l.strength > 0.3).length : 0;
-    return { visited: visited.size, strong, round: tickIndex + 1, total: r.ticks.length };
-  }, [tickIndex]);
+    return { visited: visited.size, strong, round: tickIndex + 1, total: run.ticks.length };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tickIndex, tab]);
 
   const handleAsk = async (question: string, currentPath: string[]) => {
-    if (USE_API) return ask(question, currentPath);
+    if (USE_API) {
+      const supportPath = tab === 'for' ? currentPath : [];
+      const refutePath = tab === 'against' ? currentPath : [];
+      return ask(question, supportPath, refutePath, argument);
+    }
     await new Promise((r) => setTimeout(r, 800));
     const lower = question.toLowerCase();
     if (lower.includes('vendor') && lower.includes('defect')) {
@@ -225,7 +250,7 @@ export default function App() {
       {tickIndex >= 0 && (
         <div className="playback-bar glass">
           <div className="playback-controls">
-            <button className="pb-btn" onClick={restart} title="Restart" disabled={!runResultRef.current}>
+            <button className="pb-btn" onClick={restart} title="Restart" disabled={!activeRun}>
               <RotateCcw size={16} />
             </button>
             <button className="pb-btn" onClick={stepBack} title="Step back" disabled={tickIndex <= 0}>
@@ -257,8 +282,8 @@ export default function App() {
       <main className="workspace">
         <section className="left-stage">
           <EvidenceBoard
-            chunks={activeData.chunks}
-            links={activeData.links}
+            chunks={chunks}
+            links={links}
             agents={agents}
             highlightedPath={path}
             focusedChunk={focusedChunk}
@@ -281,9 +306,9 @@ export default function App() {
                 <ResultPanel
                   chunks={chunks}
                   path={path}
-                  sources={sources}
-                  contradictions={contradictions}
-                  angles={angles}
+                  sources={activeRun?.sources ?? []}
+                  contradictions={activeRun?.contradictions ?? []}
+                  angles={activeRun?.angles ?? []}
                   onFocusChunk={setFocusedChunk}
                 />
               </motion.div>

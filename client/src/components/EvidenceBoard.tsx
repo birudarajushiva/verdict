@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { Eye, EyeOff } from 'lucide-react';
 import ForceGraph3D, { type ForceGraphMethods, type NodeObject, type LinkObject } from 'react-force-graph-3d';
-import type { Chunk, Link, Agent } from '@shared/types.ts';
+import type { Chunk, Link, Agent } from '../types.ts';
 import './EvidenceBoard.css';
 
 export type SideTab = 'for' | 'against';
