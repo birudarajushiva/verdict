@@ -1,0 +1,144 @@
+.docupload-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 4, 10, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.docupload {
+  width: min(560px, 92vw);
+  max-height: 86vh;
+  overflow-y: auto;
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 24px var(--glow-faint);
+}
+
+.docupload-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.docupload-head h3 {
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.du-close {
+  color: var(--text);
+  background: transparent;
+  padding: 4px;
+  border-radius: 6px;
+}
+.du-close:hover { color: var(--text-h); background: rgba(255, 255, 255, 0.08); }
+
+.du-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.du-hint strong { color: var(--accent-blue); font-weight: 400; }
+
+.du-row input[type='file'] {
+  width: 100%;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.du-paste {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.du-paste input,
+.du-paste textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 11px;
+  font-size: 13px;
+  color: var(--text-h);
+  outline: none;
+  resize: vertical;
+}
+.du-paste input:focus,
+.du-paste textarea:focus { border-color: var(--accent-blue); }
+
+.du-add {
+  align-self: flex-start;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--text-h);
+  background: rgba(61, 123, 253, 0.12);
+  border: 1px solid rgba(61, 123, 253, 0.3);
+}
+.du-add:hover:not(:disabled) { background: rgba(61, 123, 253, 0.2); }
+.du-add:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.du-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.du-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-h);
+}
+
+.du-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.du-size { color: var(--text); opacity: 0.7; font-size: 11px; }
+.du-remove { color: var(--accent-pink); background: transparent; }
+.du-remove:hover { background: rgba(255, 42, 140, 0.12); }
+
+.du-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.du-cancel {
+  padding: 9px 16px;
+  border-radius: 9px;
+  font-size: 13px;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+}
+.du-cancel:hover { color: var(--text-h); background: rgba(255, 255, 255, 0.06); }
+
+.du-submit {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: 9px;
+  font-size: 13px;
+  color: #eaf1ff;
+  background: linear-gradient(135deg, var(--accent-deep), var(--accent-darker));
+  border: 1px solid rgba(61, 123, 253, 0.4);
+  box-shadow: 0 0 12px var(--glow-soft);
+}
+.du-submit:hover:not(:disabled) { border-color: rgba(61, 123, 253, 0.6); }
+.du-submit:disabled { opacity: 0.5; cursor: not-allowed; }

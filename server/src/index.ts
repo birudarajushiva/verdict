@@ -1,4 +1,5 @@
 import http from 'node:http';
+import fs from 'node:fs';
 import path from 'node:path';
 import type { Chunk } from '../../src/shared/types';
 import { loadChunks } from './chunker';
@@ -41,6 +42,12 @@ function readBody(req: http.IncomingMessage): Promise<any> {
 
 function stringField(body: any, key: string): string {
   return typeof body?.[key] === 'string' ? body[key] : '';
+}
+
+function sanitizeName(raw: string): string {
+  const base = path.basename(raw).replace(/[^a-zA-Z0-9_.-]/g, '_');
+  if (!base) return '';
+  return base.toLowerCase().endsWith('.txt') ? base : `${base}.txt`;
 }
 
 function chunkText(chunk: Chunk): string {
@@ -157,6 +164,29 @@ const server = http.createServer(async (req, res) => {
       const chunks = loadChunks(CASE_DIR); // chunker initializes score: {}
       const links = buildLinks(chunks);
       sendJson(res, 200, { chunks, links });
+      return;
+    }
+
+    if (req.method === 'POST' && pathname === '/upload') {
+      const body = await readBody(req);
+      const docs = Array.isArray(body?.docs) ? body.docs : [];
+      if (docs.length === 0) {
+        sendJson(res, 400, { error: 'docs array is required' });
+        return;
+      }
+      const written: string[] = [];
+      for (const d of docs) {
+        const name = sanitizeName(String(d?.name ?? ''));
+        const text = String(d?.text ?? '');
+        if (!name || !text.trim()) continue;
+        fs.writeFileSync(path.join(CASE_DIR, name), text);
+        written.push(name);
+      }
+      if (written.length === 0) {
+        sendJson(res, 400, { error: 'no valid documents supplied' });
+        return;
+      }
+      sendJson(res, 200, { ok: true, written });
       return;
     }
 

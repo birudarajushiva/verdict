@@ -32,6 +32,18 @@ export async function runSwarm(argument: string, seed = 'demo', timeoutMs = 2000
   }
 }
 
+export async function uploadDocs(
+  docs: { name: string; text: string }[],
+): Promise<{ ok: boolean; written: string[] }> {
+  const res = await fetch(`${API_URL}/upload`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ docs }),
+  });
+  if (!res.ok) throw new Error(`upload failed: ${res.status}`);
+  return (await res.json()) as { ok: boolean; written: string[] };
+}
+
 export async function ask(
   question: string,
   supportPath: string[],

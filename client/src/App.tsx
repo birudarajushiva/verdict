@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Pause, Play, RotateCcw, SkipBack, SkipForward, Sparkles, Zap } from 'lucide-react';
+import { Pause, Play, RotateCcw, SkipBack, SkipForward, Sparkles, Upload, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import EvidenceBoard, { type SideTab } from './components/EvidenceBoard.tsx';
 import ResultPanel from './components/ResultPanel.tsx';
 import ChatPanel from './components/ChatPanel.tsx';
+import DocUpload from './components/DocUpload.tsx';
 import { fetchGraph, runSwarm, ask } from './api.ts';
 import { adaptRunSide } from './adapt.ts';
 import type { Chunk, Link, Agent, RunResult } from './types.ts';
@@ -32,6 +33,7 @@ export default function App() {
   const [focusedChunk, setFocusedChunk] = useState<string | null>(null);
   const [tab, setTab] = useState<SideTab>('for');
   const [activationKey, setActivationKey] = useState(0);
+  const [uploadOpen, setUploadOpen] = useState(false);
   const [toasts, setToasts] = useState<Toast[]>([]);
   const forRunRef = useRef<RunResult | null>(null);
   const againstRunRef = useRef<RunResult | null>(null);
@@ -249,8 +251,18 @@ export default function App() {
               <><Zap size={18} /> Run swarm</>
             )}
           </button>
+          <button className="replay-btn" onClick={() => setUploadOpen(true)}>
+            <Upload size={15} /> Upload docs
+          </button>
         </div>
       </header>
+
+      <DocUpload
+        open={uploadOpen}
+        onClose={() => setUploadOpen(false)}
+        onAnalyze={startRun}
+        notify={toast}
+      />
 
       {tickIndex >= 0 && (
         <div className="playback-bar glass">
