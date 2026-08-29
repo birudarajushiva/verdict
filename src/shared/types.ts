@@ -1,34 +1,103 @@
-export type Chunk = {
+export interface Chunk {
   id: string;
   doc: string;
-  text: string;
+  sentences: string[];
   score: Record<string, number>;
   against: number;
-};
+}
 
-export type Link = {
+export interface Link {
   from: string;
   to: string;
   strength: number;
-};
+}
 
-export type Agent = {
+export interface AgentState {
   id: string;
+  chunkId: string;
   angle: string;
-  at: string;
-  visited: string[];
+}
+
+export type Side = 'support' | 'refute';
+
+export type SubAgentKind = 'recap' | 'factcheck' | 'strategist' | 'counsel';
+
+export type Boost = {
+  chunkId: string;
+  amount: number;
+  reason: string;
+  from: string;
 };
 
-export type Tick = {
+export type SubAgentOutput = {
+  headline: string;
+  details: string[];
+  citations: string[];
+  confidence: number;
+  needsHuman: boolean;
+  flags: { chunkId: string; issue: string }[];
+};
+
+export type SubAgentTask = {
+  id: string;
+  kind: SubAgentKind;
+  side: Side | 'both';
+  tick: number;
+  inputChunks: string[];
+  status: 'queued' | 'running' | 'done' | 'skipped';
+  output: SubAgentOutput | null;
+  cost: number;
+  boosts: Boost[];
+};
+
+export type Brief = {
+  verdictScore: number;
+  strongestFor: string[];
+  strongestAgainst: string[];
+  contested: string[];
+  weakestLinkFor: string;
+  weakestLinkAgainst: string;
+  timeline: { date: string; event: string; doc: string }[];
+  nextSteps: string[];
+  humanReviewQueue: string[];
+};
+
+export type Find = {
+  agentId: string;
+  chunkId: string;
+  doc: string;
+  angle: string;
+  score: number;
+  linkFrom: string;
+  linkTo: string;
+  note: string;
+};
+
+export interface Tick {
   tick: number;
   links: Link[];
-  agents: Agent[];
-};
+  agents: AgentState[];
+  boostsApplied: Boost[];
+  finds: Find[];
+  summary: string;
+}
 
-export type RunResult = {
-  angles: string[];
+export interface SwarmRun {
+  side: Side;
+  angles: { name: string; description: string }[];
   ticks: Tick[];
+  recap: string[];
+  finds: string[][];
   path: string[];
   sources: string[];
-  contradictions: string[];
-};
+}
+
+export interface RunResult {
+  argument: string;
+  seed: string;
+  support: SwarmRun;
+  refute: SwarmRun;
+  overlap: string[];
+  tasks: SubAgentTask[];
+  brief: Brief;
+}

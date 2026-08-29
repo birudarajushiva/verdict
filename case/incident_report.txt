@@ -1,0 +1,1 @@
+Field incident report dated Mar 20, 2026. Controller units failed within two weeks of delivery. The failures matched the February crash signature. Kestrel opened a formal investigation. The incident report referenced the firmware changelog. A recall was issued in late March. The report concluded the defect predated the signing.

@@ -1,4 +1,7 @@
 node_modules/
 dist/
 .env
+.env.*
+.node/
 .DS_Store
+server/cache/

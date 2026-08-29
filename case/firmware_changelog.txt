@@ -1,0 +1,1 @@
+Kestrel controller firmware changelog. On Feb 10, 2026 the boot sequence crashed repeatedly. On Feb 14, 2026 the memory fault reappeared in testing. Marcus Webb marked the firmware defect as known. On Feb 21, 2026 the regression patch failed. Priya Nair logged the crash signature as unresolved. The changelog was included in the March 3 signing package.

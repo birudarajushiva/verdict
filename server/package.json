@@ -1,23 +1,20 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx src/index.ts"
+    "dev": "tsx src/index.ts",
+    "demo": "tsx src/scripts/demo.ts",
+    "test:swarm": "tsx src/swarm.test.ts",
+    "check:chunks": "tsx src/scripts/checkChunks.ts",
+    "check:links": "tsx src/scripts/checkLinks.ts",
+    "check:scores": "tsx src/scripts/checkScores.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "dotenv": "^17.4.2"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
     "@types/node": "^26.4.0",
     "tsx": "^4.23.12",
     "typescript": "^7.0.2"
