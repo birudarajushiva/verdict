@@ -34,7 +34,12 @@ export function adaptRunSide(raw: RawRunResult, side: Side): RunResult {
       visitedByAgent.set(a.id, visited);
       return { id: a.id, angle: a.angle, at: a.chunkId, visited };
     });
-    return { tick: t.tick, links: adaptLinks(t.links), agents };
+    return {
+      tick: t.tick,
+      links: adaptLinks(t.links),
+      agents,
+      boostsApplied: (t.boostsApplied ?? []).map((b) => ({ chunkId: b.chunkId, amount: b.amount })),
+    };
   });
 
   return {

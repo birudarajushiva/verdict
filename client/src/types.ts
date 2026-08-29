@@ -26,6 +26,7 @@ export type Tick = {
   tick: number;
   links: Link[];
   agents: Agent[];
+  boostsApplied?: { chunkId: string; amount: number }[];
 };
 
 export type RunResult = {

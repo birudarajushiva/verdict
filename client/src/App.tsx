@@ -41,8 +41,18 @@ export default function App() {
   const activeRun = tab === 'for' ? forRunRef.current : againstRunRef.current;
   const totalTicks = activeRun?.ticks.length ?? 0;
 
-  // Each tab shows its own side's evidence chain, so For vs Against are clearly different.
-  const activeIds = new Set(activeRun?.path ?? []);
+  // Each tab shows the nodes its side's swarm engaged (path + touched chunks), so the sphere fills.
+  const engagedIds = (run: RunResult | null) => {
+    const s = new Set<string>();
+    if (!run) return s;
+    run.path.forEach((id) => s.add(id));
+    run.ticks.forEach((t) => {
+      t.boostsApplied?.forEach((b) => { if (b.amount > 0) s.add(b.chunkId); });
+      t.agents.forEach((a) => { s.add(a.at); a.visited.forEach((v) => s.add(v)); });
+    });
+    return s;
+  };
+  const activeIds = engagedIds(activeRun);
   const visibleChunks = activeIds.size ? chunks.filter((c) => activeIds.has(c.id)) : chunks;
   const visibleLinks = activeIds.size ? links.filter((l) => activeIds.has(l.from) && activeIds.has(l.to)) : links;
 
