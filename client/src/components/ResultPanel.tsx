@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { Chunk } from '../types.ts';
+import { docColor, angleColor } from '../colors.ts';
 import './ResultPanel.css';
 
 interface ResultPanelProps {
@@ -9,21 +10,6 @@ interface ResultPanelProps {
   contradictions: string[];
   angles: string[];
   onFocusChunk?: (id: string | null) => void;
-}
-
-const DOC_COLORS: Record<string, string> = {
-  'complaint.txt': '#00f0ff',
-  'vendor_email.txt': '#a855f7',
-  'inspection_report.txt': '#39ff14',
-  'witness_stmt.txt': '#ff2a8c',
-  'internal_memo.txt': '#ffd700',
-};
-
-function angleColor(angle: string) {
-  if (angle === 'timeline') return '#00f0ff';
-  if (angle === 'knowledge') return '#a855f7';
-  if (angle === 'incentives') return '#ff2a8c';
-  return '#aaa';
 }
 
 export default function ResultPanel({ chunks, path, sources, contradictions, angles, onFocusChunk }: ResultPanelProps) {
@@ -60,7 +46,7 @@ export default function ResultPanel({ chunks, path, sources, contradictions, ang
                 {idx + 1}
               </span>
               <div className="chain-body">
-                <div className="chain-doc" style={{ color: DOC_COLORS[chunk.doc] ?? '#fff' }}>{chunk.doc}</div>
+                <div className="chain-doc" style={{ color: docColor(chunk.doc) }}>{chunk.doc}</div>
                 <div className={`chain-text ${isExpanded ? 'expanded' : ''}`}>{chunk.text}</div>
               </div>
             </button>
@@ -72,7 +58,7 @@ export default function ResultPanel({ chunks, path, sources, contradictions, ang
         <h4>Sources</h4>
         <div className="source-tags">
           {sources.map((s) => (
-            <span key={s} className="source-tag" style={{ color: DOC_COLORS[s] ?? '#fff', borderColor: (DOC_COLORS[s] ?? '#fff') + '44' }}>
+            <span key={s} className="source-tag" style={{ color: docColor(s), borderColor: docColor(s) + '44' }}>
               {s}
             </span>
           ))}
@@ -92,7 +78,7 @@ export default function ResultPanel({ chunks, path, sources, contradictions, ang
                 onMouseEnter={() => onFocusChunk?.(chunk.id)}
                 onMouseLeave={() => onFocusChunk?.(null)}
               >
-                <span className="contra-doc" style={{ color: DOC_COLORS[chunk.doc] ?? '#fff' }}>{chunk.doc}</span>
+                <span className="contra-doc" style={{ color: docColor(chunk.doc) }}>{chunk.doc}</span>
                 <span className="contra-text">{chunk.text}</span>
               </button>
             ))}

@@ -3,27 +3,10 @@ import * as THREE from 'three';
 import { Eye, EyeOff } from 'lucide-react';
 import ForceGraph3D, { type ForceGraphMethods, type NodeObject, type LinkObject } from 'react-force-graph-3d';
 import type { Chunk, Link, Agent } from '../types.ts';
+import { docColor as getDocColor, angleColor } from '../colors.ts';
 import './EvidenceBoard.css';
 
 export type SideTab = 'for' | 'against';
-
-const DOC_COLORS: Record<string, string> = {
-  'complaint.txt': '#00f0ff',
-  'vendor_email.txt': '#a855f7',
-  'inspection_report.txt': '#39ff14',
-  'witness_stmt.txt': '#ff2a8c',
-  'internal_memo.txt': '#ffd700',
-};
-
-const ANGLE_COLORS: Record<string, string> = {
-  timeline: '#00f0ff',
-  knowledge: '#a855f7',
-  incentives: '#ff2a8c',
-};
-
-function getDocColor(doc: string) {
-  return DOC_COLORS[doc] ?? '#ffffff';
-}
 
 const glowTextureCache = new Map<string, THREE.CanvasTexture>();
 
@@ -265,7 +248,7 @@ export default function EvidenceBoard({
     const seen = new Set<string>();
     agents.forEach((agent) => {
       seen.add(agent.id);
-      const color = ANGLE_COLORS[agent.angle] || '#a855f7';
+      const color = angleColor(agent.angle);
       let sprite = agentSpritesRef.current.get(agent.id);
       if (!sprite) {
         sprite = new THREE.Sprite(
@@ -315,7 +298,7 @@ export default function EvidenceBoard({
         return;
       }
 
-      if (hubRef.current) hubRef.current.rotation.y += 0.0002;
+      if (hubRef.current) hubRef.current.rotation.y += 0.0004;
 
       const camera = fg.camera();
       const rect = board.getBoundingClientRect();
