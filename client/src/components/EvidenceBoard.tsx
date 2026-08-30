@@ -299,7 +299,7 @@ export default function EvidenceBoard({
         return;
       }
 
-      if (hubRef.current) hubRef.current.rotation.y += 0.0004;
+      if (hubRef.current) hubRef.current.rotation.y += 0.00012;
 
       const camera = fg.camera();
       const rect = board.getBoundingClientRect();

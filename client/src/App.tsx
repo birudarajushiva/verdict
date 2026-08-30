@@ -47,6 +47,7 @@ export default function App() {
     if (!run) return s;
     run.path.forEach((id) => s.add(id));
     run.ticks.forEach((t) => {
+      t.links.forEach((l) => { s.add(l.from); s.add(l.to); });
       t.boostsApplied?.forEach((b) => { if (b.amount > 0) s.add(b.chunkId); });
       t.agents.forEach((a) => { s.add(a.at); a.visited.forEach((v) => s.add(v)); });
     });
@@ -135,6 +136,10 @@ export default function App() {
           forRun = m;
           againstRun = m;
           toast('Live LLM unavailable — showing demo swarm');
+        }
+        if (forRun !== againstRun) {
+          forRun.contradictions = againstRun.path;
+          againstRun.contradictions = forRun.path;
         }
         forRunRef.current = forRun;
         againstRunRef.current = againstRun;
@@ -309,9 +314,9 @@ export default function App() {
       <main className="workspace">
         <section className="left-stage">
           <EvidenceBoard
-            chunks={visibleChunks}
-            links={visibleLinks}
-            agents={agents}
+            chunks={tickIndex >= 0 ? visibleChunks : []}
+            links={tickIndex >= 0 ? visibleLinks : []}
+            agents={tickIndex >= 0 ? agents : []}
             highlightedPath={path}
             focusedChunk={focusedChunk}
             onFocusChunk={setFocusedChunk}
