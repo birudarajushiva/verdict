@@ -41,21 +41,35 @@ export default function App() {
   const activeRun = tab === 'for' ? forRunRef.current : againstRunRef.current;
   const totalTicks = activeRun?.ticks.length ?? 0;
 
-  // Each tab shows the nodes its side's swarm engaged (path + touched chunks), so the sphere fills.
-  const engagedIds = (run: RunResult | null) => {
-    const s = new Set<string>();
-    if (!run) return s;
-    run.path.forEach((id) => s.add(id));
+  // Partition chunks between the tabs: each goes to whichever side engaged/boosted it more.
+  // Unengaged chunks appear on both so the sphere stays filled; argued chunks differ per tab.
+  const sideWeight = (run: RunResult | null) => {
+    const m = new Map<string, number>();
+    if (!run) return m;
+    const add = (id: string, w: number) => m.set(id, (m.get(id) ?? 0) + w);
+    run.path.forEach((id) => add(id, 3));
     run.ticks.forEach((t) => {
-      t.links.forEach((l) => { s.add(l.from); s.add(l.to); });
-      t.boostsApplied?.forEach((b) => { if (b.amount > 0) s.add(b.chunkId); });
-      t.agents.forEach((a) => { s.add(a.at); a.visited.forEach((v) => s.add(v)); });
+      t.boostsApplied?.forEach((b) => { if (b.amount > 0) add(b.chunkId, 2); });
+      t.agents.forEach((a) => { add(a.at, 1); a.visited.forEach((v) => add(v, 1)); });
+      t.links.forEach((l) => { add(l.from, 0.5); add(l.to, 0.5); });
     });
-    return s;
+    return m;
   };
-  const activeIds = engagedIds(activeRun);
-  const visibleChunks = activeIds.size ? chunks.filter((c) => activeIds.has(c.id)) : chunks;
-  const visibleLinks = activeIds.size ? links.filter((l) => activeIds.has(l.from) && activeIds.has(l.to)) : links;
+  const supportW = sideWeight(forRunRef.current);
+  const refuteW = sideWeight(againstRunRef.current);
+  const forIds = new Set<string>();
+  const againstIds = new Set<string>();
+  chunks.forEach((c) => {
+    const s = supportW.get(c.id) ?? 0;
+    const r = refuteW.get(c.id) ?? 0;
+    if (s === 0 && r === 0) { forIds.add(c.id); againstIds.add(c.id); }
+    else if (s >= r) forIds.add(c.id);
+    else againstIds.add(c.id);
+  });
+  const activeIds = tab === 'for' ? forIds : againstIds;
+  const started = tickIndex >= 0;
+  const visibleChunks = started ? chunks.filter((c) => activeIds.has(c.id)) : [];
+  const visibleLinks = started ? links.filter((l) => activeIds.has(l.from) && activeIds.has(l.to)) : [];
 
   const toast = (message: string) => {
     const id = Date.now();
@@ -314,9 +328,9 @@ export default function App() {
       <main className="workspace">
         <section className="left-stage">
           <EvidenceBoard
-            chunks={tickIndex >= 0 ? visibleChunks : []}
-            links={tickIndex >= 0 ? visibleLinks : []}
-            agents={tickIndex >= 0 ? agents : []}
+            chunks={visibleChunks}
+            links={visibleLinks}
+            agents={started ? agents : []}
             highlightedPath={path}
             focusedChunk={focusedChunk}
             onFocusChunk={setFocusedChunk}
