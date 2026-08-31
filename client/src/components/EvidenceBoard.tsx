@@ -38,6 +38,7 @@ interface EvidenceBoardProps {
   tab?: SideTab;
   onTabChange?: (tab: SideTab) => void;
   activationKey?: number;
+  sideIds?: Set<string>;
 }
 
 interface GraphNode extends Chunk {
@@ -85,6 +86,7 @@ export default function EvidenceBoard({
   tab = 'for',
   onTabChange,
   activationKey = 0,
+  sideIds,
 }: EvidenceBoardProps) {
   const fgRef = useRef<ForceGraphMethods<NodeObject<GraphNode>, LinkObject<GraphNode, GraphLink>> | undefined>(undefined);
   const boardRef = useRef<HTMLDivElement>(null);
@@ -105,6 +107,7 @@ export default function EvidenceBoard({
   const lastSigRef = useRef('');
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [showAll, setShowAll] = useState(false);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const graphData = useMemo(() => {
     const nodes: GraphNode[] = chunks.map((c) => ({ ...c }));
@@ -116,12 +119,12 @@ export default function EvidenceBoard({
     const fg = fgRef.current;
     if (!fg) return;
 
-    fg.d3Force('charge')?.strength(-400);
-    fg.d3Force('link')?.distance(110);
+    fg.d3Force('charge')?.strength(-260);
+    fg.d3Force('link')?.distance(90);
     const radial = fg.d3Force('radial');
     if (radial) {
-      radial.strength(0.7);
-      radial.radius(165);
+      radial.strength(0.85);
+      radial.radius(150);
     }
     fg.cameraPosition({ x: 130, y: 100, z: 320 }, { x: 0, y: 0, z: 0 });
 
@@ -299,7 +302,7 @@ export default function EvidenceBoard({
         return;
       }
 
-      if (hubRef.current) hubRef.current.rotation.y += 0.00012;
+      if (hubRef.current) hubRef.current.rotation.y = (performance.now() * 0.00002) % (Math.PI * 2);
 
       const camera = fg.camera();
       const rect = board.getBoundingClientRect();
@@ -506,7 +509,7 @@ export default function EvidenceBoard({
     return isPathLink ? 3 : 0;
   };
 
-  const isCardVisible = (id: string) => showAll || hoveredId === id || focusedChunk === id;
+  const isCardVisible = (id: string) => showAll || hoveredId === id || focusedChunk === id || expandedId === id;
 
   return (
     <div className="evidence-board" ref={boardRef}>
@@ -582,15 +585,21 @@ export default function EvidenceBoard({
           const isFocused = focusedChunk === node.id || hoveredId === node.id;
           const onPath = pathSet.has(node.id);
           const dimmed = highlightedPath.length > 0 && !onPath && !isFocused;
+          const isExpanded = expandedId === node.id;
+          const sideHit = showAll && !!sideIds?.has(node.id);
+          const sideDim = showAll && !!sideIds && !sideIds.has(node.id);
           return (
             <div
               key={node.id}
-              className={`node-card glass ${isFocused ? 'focused' : ''} ${onPath ? 'path' : ''} ${dimmed ? 'dimmed' : ''} ${!pos.inFront ? 'behind' : ''}`}
+              className={`node-card glass ${isFocused ? 'focused' : ''} ${onPath ? 'path' : ''} ${dimmed ? 'dimmed' : ''} ${!pos.inFront ? 'behind' : ''} ${isExpanded ? 'expanded' : ''} ${sideHit ? (tab === 'for' ? 'for-glow' : 'against-glow') : ''} ${sideDim ? 'dimmed' : ''}`}
               style={{
                 transform: `translate(${pos.x}px, ${pos.y}px) translate(${12 * pos.zoom}px, 0) scale(${pos.zoom * pos.scale})`,
                 opacity: pos.opacity,
-                borderColor: getDocColor(node.doc),
+                borderColor: sideHit ? undefined : getDocColor(node.doc),
               }}
+              onClick={() => setExpandedId((prev) => (prev === node.id ? null : node.id))}
+              onMouseEnter={() => setHoveredId(node.id)}
+              onMouseLeave={() => setHoveredId(null)}
             >
               <div className="node-card-doc" style={{ color: getDocColor(node.doc) }}>{node.doc}</div>
               <div className="node-card-text">{node.text}</div>

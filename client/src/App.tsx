@@ -68,8 +68,8 @@ export default function App() {
   });
   const activeIds = tab === 'for' ? forIds : againstIds;
   const started = tickIndex >= 0;
-  const visibleChunks = started ? chunks.filter((c) => activeIds.has(c.id)) : [];
-  const visibleLinks = started ? links.filter((l) => activeIds.has(l.from) && activeIds.has(l.to)) : [];
+  const visibleChunks = started ? chunks : [];
+  const visibleLinks = started ? links : [];
 
   const toast = (message: string) => {
     const id = Date.now();
@@ -144,12 +144,9 @@ export default function App() {
           const raw = await runSwarm(argument);
           forRun = adaptRunSide(raw, 'support');
           againstRun = adaptRunSide(raw, 'refute');
-        } catch {
-          const m = mockRun as unknown as MockRun;
-          useChunks = m.chunks;
-          forRun = m;
-          againstRun = m;
-          toast('Live LLM unavailable — showing demo swarm');
+        } catch (e) {
+          toast(e instanceof Error ? e.message : 'Analysis failed — is the backend running?');
+          return;
         }
         if (forRun !== againstRun) {
           forRun.contradictions = againstRun.path;
@@ -336,6 +333,7 @@ export default function App() {
             onFocusChunk={setFocusedChunk}
             tab={tab}
             onTabChange={setTab}
+            sideIds={activeIds}
             activationKey={activationKey}
           />
         </section>

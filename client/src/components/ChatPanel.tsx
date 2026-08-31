@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Send } from 'lucide-react';
+import { Maximize2, Minimize2, Send } from 'lucide-react';
 import './ChatPanel.css';
 
 interface ChatPanelProps {
@@ -23,6 +23,7 @@ export default function ChatPanel({ path, onAsk }: ChatPanelProps) {
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
 
   const send = async (text: string) => {
@@ -42,9 +43,12 @@ export default function ChatPanel({ path, onAsk }: ChatPanelProps) {
   };
 
   return (
-    <div className="chat-panel glass">
+    <div className={`chat-panel glass ${expanded ? 'chat-expanded' : ''}`}>
       <div className="chat-header">
         <h4>Your case assistant</h4>
+        <button className="chat-expand" onClick={() => setExpanded((e) => !e)} title={expanded ? 'Shrink' : 'Expand'}>
+          {expanded ? <Minimize2 size={15} /> : <Maximize2 size={15} />}
+        </button>
       </div>
 
       <div className="chat-messages">

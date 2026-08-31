@@ -7,11 +7,36 @@
   gap: 10px;
 }
 
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
 .chat-header h4 {
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   opacity: 0.95;
+}
+
+.chat-expand {
+  color: var(--text);
+  background: transparent;
+  padding: 4px;
+  border-radius: 6px;
+}
+.chat-expand:hover { color: var(--text-h); background: rgba(255, 255, 255, 0.08); }
+
+.chat-panel.chat-expanded {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: min(420px, 92vw);
+  height: min(70vh, 640px);
+  z-index: 300;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 24px var(--glow-soft);
 }
 
 .chat-messages {
